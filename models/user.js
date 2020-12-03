@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt')
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -14,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.hasMany(models.review)
     }
     validPassword(passwordTyped) {
       return bcrypt.compareSync(passwordTyped, this.password);
